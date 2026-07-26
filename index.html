@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сочетается? — Веб-платформа для стиля</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="top-nav">
+        <h1 class="page-title">Сочетается<span>?</span></h1>
+        <button class="burger" id="burgerBtn" aria-label="Меню">☰</button>
+        <nav class="menu" id="navMenu">
+          <a href="#combination" class="menu-item active">Сочетание</a>
+          <a href="#clothes_and_colors" class="menu-item">Одежда и цвета</a>
+          <a href="#feedback" class="menu-item">Обратная связь</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-title">Сочетается<span>?</span></h1>
+        <div class="hero-text">
+          <p>
+            Интерактивный конструктор образов: выбери одежду и цвет, получи
+            готовые луки. Мгновенные решения для твоего стиля.
+          </p>
+          <button class="btn btn-primary btn-large" id="startQuizBtn">
+            Начать
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="combination" class="section">
+      <div class="container">
+        <div class="feature-section">
+          <div class="feature-content">
+            <h2>🎨 Цветовая гамма</h2>
+            <p>Выбери любой цвет и узнай, с чем он сочетается.</p>
+
+            <!-- Базовые цвета -->
+            <div class="color-section">
+              <div class="color-section-header">
+                <span>Базовые цвета</span>
+                <div class="line"></div>
+              </div>
+              <div class="color-grid" id="basicColors"></div>
+            </div>
+
+            <!-- Вторичные цвета -->
+            <div class="color-section">
+              <div class="color-section-header">
+                <span>Вторичные цвета</span>
+                <div class="line"></div>
+              </div>
+              <div class="color-grid" id="secondaryColors"></div>
+            </div>
+
+            <!-- Детальная информация о цвете -->
+            <div id="color-detail">
+              <button class="btn btn-secondary back-btn" id="closeColorBtn">
+                ⬅ Назад к палитре
+              </button>
+              <h3 id="detailTitle" style="font-size: 24px; margin-bottom: 4px">
+                Синий
+              </h3>
+              <p
+                id="detailDesc"
+                style="color: var(--text-secondary); margin-bottom: 16px"
+              >
+                Описание цвета
+              </p>
+
+              <div class="schemes" id="schemesContainer">
+                <div class="scheme">
+                  <h4>🎨 Монохром</h4>
+                  <div class="scheme-colors" id="detailMono"></div>
+                  <div class="hint">
+                    Разные оттенки одного цвета — всегда сочетаются
+                  </div>
+                </div>
+                <div class="scheme">
+                  <h4>🔥 Комплиментарные</h4>
+                  <div class="scheme-colors" id="detailComp"></div>
+                  <div class="hint">
+                    Цвета напротив в круге — создают яркий контраст
+                  </div>
+                </div>
+                <div class="scheme">
+                  <h4>🌊 Аналогичные</h4>
+                  <div class="scheme-colors" id="detailAnalog"></div>
+                  <div class="hint">
+                    Соседние цвета в круге — спокойная гармония
+                  </div>
+                </div>
+                <div class="scheme">
+                  <h4>🔺 Триада</h4>
+                  <div class="scheme-colors" id="detailTriad"></div>
+                  <div class="hint">
+                    Три цвета на равном расстоянии — сбалансированный образ
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="clothes_and_colors" class="section">
+      <div class="container">
+        <div class="feature-section">
+          <div class="feature-content">
+            <h2>👗 Одежда и цвета</h2>
+            <p>
+              Выбери тип одежды, её цвет и нажми «Сочетается?», чтобы получить
+              готовые образы.
+            </p>
+
+            <div class="constructor-steps">
+              <div class="step">
+                <div class="step-label">Шаг 1</div>
+                <h3>Что подбираем?</h3>
+                <div class="step-options" id="clothingType">
+                  <button data-type="джинсы">👖 Джинсы</button>
+                  <button data-type="брюки">👖 Брюки</button>
+                  <button data-type="юбка">👗 Юбка</button>
+                  <button data-type="платье">👗 Платье</button>
+                  <button data-type="топ">👚 Топ</button>
+                  <button data-type="пальто">🧥 Пальто</button>
+                  <button data-type="обувь">👟 Обувь</button>
+                </div>
+              </div>
+
+              <div class="step">
+                <div class="step-label">Шаг 2</div>
+                <h3>Какой цвет?</h3>
+                <div class="step-options" id="clothingColor"></div>
+              </div>
+
+              <div style="text-align: center">
+                <button
+                  class="btn btn-primary btn-large"
+                  id="checkCombinationBtn"
+                >
+                  Сочетается? ✨
+                </button>
+              </div>
+            </div>
+
+            <div id="result-container">
+              <h3 style="font-size: 22px; margin-bottom: 4px">
+                ✨ Вот что подходит
+              </h3>
+              <p style="color: var(--text-secondary); margin-bottom: 16px">
+                Готовые образы с выбранной вещью
+              </p>
+              <div class="result-grid" id="resultGrid"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="feedback" class="section">
+      <div class="container">
+        <div class="feature-section">
+          <div class="feature-content">
+            <h2>💬 Обратная связь</h2>
+            <p>
+              Будет интересно узнать, полезна ли платформа и что хотелось бы
+              увидеть ;)
+            </p>
+
+            <form
+              class="feedback-form"
+              id="feedbackForm"
+              action="https://formspree.io/f/xkgyekwg"
+              method="POST"
+            >
+              <input type="text" name="name" placeholder="Ваше имя" required />
+              <input
+                type="email"
+                name="email"
+                placeholder="Ваш email"
+                required
+              />
+              <textarea
+                name="message"
+                placeholder="Ваше сообщение..."
+                required
+              ></textarea>
+              <input type="text" name="_gotcha" style="display: none" />
+              <button type="submit" class="btn btn-primary">Отправить</button>
+            </form>
+            <div id="form-status"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="container">
+        <p>© 2026 Сочетается? — Веб-платформа для стиля</p>
+        <p>Сделано с ❤️ для тех, кто любит выглядеть стильно</p>
+      </div>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>
