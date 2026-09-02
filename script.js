@@ -42,359 +42,123 @@ document.addEventListener("DOMContentLoaded", function () {
   // 4. ДАННЫЕ ЦВЕТОВ
   // ============================================
   const colorData = [
-    // БАЗОВЫЕ
     { id: "white", name: "Белый", hex: "#F1FAEE", category: "basic" },
     { id: "beige", name: "Бежевый", hex: "#F8EDEB", category: "basic" },
     { id: "grey", name: "Серый", hex: "#8D99AE", category: "basic" },
     { id: "black", name: "Чёрный", hex: "#1D1D1D", category: "basic" },
-    {
-      id: "brown",
-      name: "Коричневый",
-      hex: "#8B5A2B",
-      category: "basic",
-    },
-    {
-      id: "navy",
-      name: "Тёмно-синий",
-      hex: "#1D3557",
-      category: "basic",
-    },
-
-    // ВТОРИЧНЫЕ
-    {
-      id: "lightblue",
-      name: "Голубой",
-      hex: "#A8DADC",
-      category: "secondary",
-    },
-    {
-      id: "pink",
-      name: "Розовый",
-      hex: "#E5989B",
-      category: "secondary",
-    },
-    {
-      id: "yellow",
-      name: "Жёлтый",
-      hex: "#E9C46A",
-      category: "secondary",
-    },
-    {
-      id: "orange",
-      name: "Оранжевый",
-      hex: "#F4A261",
-      category: "secondary",
-    },
-    {
-      id: "green",
-      name: "Зелёный",
-      hex: "#2A9D8F",
-      category: "secondary",
-    },
+    { id: "brown", name: "Коричневый", hex: "#8B5A2B", category: "basic" },
+    { id: "navy", name: "Тёмно-синий", hex: "#1D3557", category: "basic" },
+    { id: "lightblue", name: "Голубой", hex: "#A8DADC", category: "secondary" },
+    { id: "pink", name: "Розовый", hex: "#E5989B", category: "secondary" },
+    { id: "yellow", name: "Жёлтый", hex: "#E9C46A", category: "secondary" },
+    { id: "orange", name: "Оранжевый", hex: "#F4A261", category: "secondary" },
+    { id: "green", name: "Зелёный", hex: "#2A9D8F", category: "secondary" },
     { id: "red", name: "Красный", hex: "#E63946", category: "secondary" },
-    {
-      id: "purple",
-      name: "Фиолетовый",
-      hex: "#9B5DE5",
-      category: "secondary",
-    },
-    {
-      id: "burgundy",
-      name: "Бордовый",
-      hex: "#800020",
-      category: "secondary",
-    },
-
-    // НОВЫЕ ЦВЕТА
-    {
-      id: "coral",
-      name: "Коралловый",
-      hex: "#FF6B6B",
-      category: "secondary",
-    },
-    {
-      id: "olive",
-      name: "Оливковый",
-      hex: "#6B8E23",
-      category: "secondary",
-    },
-    {
-      id: "camel",
-      name: "Верблюжий",
-      hex: "#C4A882",
-      category: "secondary",
-    },
-    {
-      id: "lavender",
-      name: "Лавандовый",
-      hex: "#B8A9C9",
-      category: "secondary",
-    },
-    { id: "mint", name: "Мятный", hex: "#98D8C8", category: "secondary" },
-    {
-      id: "peach",
-      name: "Персиковый",
-      hex: "#FFDAB9",
-      category: "secondary",
-    },
-    {
-      id: "taupe",
-      name: "Серо-бежевый",
-      hex: "#BFA9A0",
-      category: "secondary",
-    },
-    {
-      id: "espresso",
-      name: "Кофейный",
-      hex: "#4A3728",
-      category: "secondary",
-    },
-    {
-      id: "fuchsia",
-      name: "Фуксия",
-      hex: "#D4456B",
-      category: "secondary",
-    },
-    {
-      id: "gold",
-      name: "Золотой",
-      hex: "#D4AF37",
-      category: "secondary",
-    },
-    { id: "ice", name: "Ледяной", hex: "#E8F4F8", category: "secondary" },
-    {
-      id: "cream",
-      name: "Кремовый",
-      hex: "#FFFDD0",
-      category: "secondary",
-    },
-    {
-      id: "lilac",
-      name: "Сиреневатый",
-      hex: "#C8A2C8",
-      category: "secondary",
-    },
+    { id: "purple", name: "Фиолетовый", hex: "#9B5DE5", category: "secondary" },
+    { id: "burgundy", name: "Бордовый", hex: "#800020", category: "secondary" },
   ];
 
   // ============================================
-  // 5. СОЧЕТАНИЯ ДЛЯ ВСЕХ ЦВЕТОВ
+  // 5. БАЗА ЦВЕТОВЫХ СОЧЕТАНИЙ
   // ============================================
-  const colorCombinations = {
-    white: {
-      title: "Белый цвет",
-      desc: "Цвет чистоты, свежести и минимализма. Основа любого гардероба.",
-      mono: ["#F1FAEE", "#FFFFFF", "#F8EDEB", "#E8E8E8"],
-      comp: ["#F1FAEE", "#1D3557"],
-      analog: ["#F1FAEE", "#F8EDEB", "#E5989B"],
-      triad: ["#F1FAEE", "#E63946", "#457B9D"],
-    },
-    beige: {
-      title: "Бежевый цвет",
-      desc: "Цвет универсальности и элегантности. Благородная база для любого образа.",
-      mono: ["#F8EDEB", "#F1FAEE", "#E8D5D0", "#FFFFFF"],
-      comp: ["#F8EDEB", "#457B9D"],
-      analog: ["#F8EDEB", "#E5989B", "#8B5A2B"],
-      triad: ["#F8EDEB", "#2A9D8F", "#E63946"],
-    },
-    grey: {
-      title: "Серый цвет",
-      desc: "Цвет элегантности, сдержанности и практичности. Идеальный нейтральный фон.",
-      mono: ["#8D99AE", "#B0B8C4", "#D4D9E0", "#F1FAEE"],
-      comp: ["#8D99AE", "#E9C46A"],
-      analog: ["#8D99AE", "#457B9D", "#1D3557"],
-      triad: ["#8D99AE", "#E63946", "#2A9D8F"],
-    },
-    black: {
-      title: "Чёрный цвет",
-      desc: "Цвет элегантности, силы и универсальности. Основа любого стильного гардероба.",
-      mono: ["#1D1D1D", "#333333", "#555555", "#888888"],
-      comp: ["#1D1D1D", "#F1FAEE"],
-      analog: ["#1D1D1D", "#333333", "#555555"],
-      triad: ["#1D1D1D", "#E63946", "#F1FAEE"],
-    },
-    brown: {
-      title: "Коричневый цвет",
-      desc: "Цвет земли, надёжности и тепла. Создаёт ощущение уюта и стабильности.",
-      mono: ["#8B5A2B", "#A67B5B", "#C4A882", "#F8EDEB"],
-      comp: ["#8B5A2B", "#457B9D"],
-      analog: ["#8B5A2B", "#F4A261", "#E63946"],
-      triad: ["#8B5A2B", "#2A9D8F", "#9B5DE5"],
-    },
-    navy: {
-      title: "Тёмно-синий цвет",
-      desc: "Цвет элегантности, авторитета и глубины. Замена чёрному в гардеробе.",
-      mono: ["#1D3557", "#457B9D", "#A8DADC", "#F1FAEE"],
-      comp: ["#1D3557", "#F4A261"],
-      analog: ["#1D3557", "#457B9D", "#9B5DE5"],
-      triad: ["#1D3557", "#E63946", "#E9C46A"],
-    },
-    lightblue: {
-      title: "Голубой цвет",
-      desc: "Цвет неба, свежести и лёгкости. Создаёт воздушные и романтичные образы.",
-      mono: ["#A8DADC", "#C4E3E8", "#E0F0F2", "#F1FAEE"],
-      comp: ["#A8DADC", "#F4A261"],
-      analog: ["#A8DADC", "#457B9D", "#2A9D8F"],
-      triad: ["#A8DADC", "#E63946", "#E9C46A"],
-    },
-    pink: {
-      title: "Розовый цвет",
-      desc: "Цвет нежности, романтики и женственности. Смягчает любой образ и добавляет тепла.",
-      mono: ["#E5989B", "#F2BCC0", "#F8E0E2", "#F1FAEE"],
-      comp: ["#E5989B", "#2A9D8F"],
-      analog: ["#E5989B", "#E63946", "#9B5DE5"],
-      triad: ["#E5989B", "#457B9D", "#E9C46A"],
-    },
-    yellow: {
-      title: "Жёлтый цвет",
-      desc: "Цвет солнца, радости и счастья. Поднимает настроение и привлекает внимание.",
-      mono: ["#E9C46A", "#F4D98C", "#FAE8B5", "#F1FAEE"],
-      comp: ["#E9C46A", "#9B5DE5"],
-      analog: ["#E9C46A", "#F4A261", "#8B5A2B"],
-      triad: ["#E9C46A", "#E63946", "#457B9D"],
-    },
-    orange: {
-      title: "Оранжевый цвет",
-      desc: "Цвет тепла, оптимизма и творчества. Добавляет энергии и яркости в образ.",
-      mono: ["#F4A261", "#F7BD7A", "#FAD69A", "#F1FAEE"],
-      comp: ["#F4A261", "#457B9D"],
-      analog: ["#F4A261", "#E63946", "#E9C46A"],
-      triad: ["#F4A261", "#2A9D8F", "#9B5DE5"],
-    },
-    green: {
-      title: "Зелёный цвет",
-      desc: "Цвет природы, гармонии и обновления. Успокаивает и расслабляет.",
-      mono: ["#2A9D8F", "#4ECDC4", "#80DED6", "#A8E6CF"],
-      comp: ["#2A9D8F", "#E63946"],
-      analog: ["#2A9D8F", "#457B9D", "#E9C46A"],
-      triad: ["#2A9D8F", "#9B5DE5", "#F4A261"],
+  const colorCombinationsData = {
+    blue: {
+      name: "Синий",
+      comp: ["#F4A261", "#E9C46A", "#FFFFFF", "#F8EDEB", "#8D99AE"],
+      analog: ["#457B9D", "#A8DADC", "#9B5DE5"],
+      triad: ["#E63946", "#E9C46A"],
+      season: "Все сезоны",
     },
     red: {
-      title: "Красный цвет",
-      desc: "Цвет страсти, энергии и силы. Привлекает внимание и добавляет уверенности.",
-      mono: ["#E63946", "#F2676F", "#F79A9E", "#F8EDEB"],
-      comp: ["#E63946", "#2A9D8F"],
+      name: "Красный",
+      comp: ["#2A9D8F", "#F1FAEE", "#8D99AE", "#1D3557"],
       analog: ["#E63946", "#F4A261", "#9B5DE5"],
-      triad: ["#E63946", "#457B9D", "#E9C46A"],
+      triad: ["#457B9D", "#E9C46A"],
+      season: "Зима, Весна",
+    },
+    black: {
+      name: "Чёрный",
+      comp: ["#FFFFFF", "#F1FAEE", "#E9C46A", "#F4A261"],
+      analog: ["#1D1D1D", "#333333", "#555555"],
+      triad: ["#E63946", "#F1FAEE"],
+      season: "Все сезоны",
+    },
+    white: {
+      name: "Белый",
+      comp: ["#1D3557", "#8B5A2B", "#E63946", "#2A9D8F"],
+      analog: ["#F1FAEE", "#F8EDEB", "#E8E8E8"],
+      triad: ["#E63946", "#457B9D"],
+      season: "Весна, Лето",
+    },
+    beige: {
+      name: "Бежевый",
+      comp: ["#457B9D", "#1D3557", "#8B5A2B", "#E5989B"],
+      analog: ["#F8EDEB", "#E8D5D0", "#FFFFFF"],
+      triad: ["#2A9D8F", "#E63946"],
+      season: "Осень, Зима",
+    },
+    grey: {
+      name: "Серый",
+      comp: ["#E9C46A", "#F4A261", "#E63946", "#457B9D"],
+      analog: ["#8D99AE", "#B0B8C4", "#D4D9E0"],
+      triad: ["#E63946", "#2A9D8F"],
+      season: "Все сезоны",
+    },
+    green: {
+      name: "Зелёный",
+      comp: ["#E63946", "#F1FAEE", "#F4A261", "#9B5DE5"],
+      analog: ["#2A9D8F", "#4ECDC4", "#A8DADC"],
+      triad: ["#9B5DE5", "#F4A261"],
+      season: "Весна, Лето",
+    },
+    yellow: {
+      name: "Жёлтый",
+      comp: ["#9B5DE5", "#1D3557", "#457B9D", "#8B5A2B"],
+      analog: ["#E9C46A", "#F4A261", "#FAE8B5"],
+      triad: ["#E63946", "#457B9D"],
+      season: "Весна, Лето",
+    },
+    orange: {
+      name: "Оранжевый",
+      comp: ["#457B9D", "#1D3557", "#2A9D8F", "#9B5DE5"],
+      analog: ["#F4A261", "#E63946", "#E9C46A"],
+      triad: ["#2A9D8F", "#9B5DE5"],
+      season: "Осень",
     },
     purple: {
-      title: "Фиолетовый цвет",
-      desc: "Цвет творчества, роскоши и тайны. Добавляет глубины и загадочности.",
-      mono: ["#9B5DE5", "#B87FE8", "#D5A8F0", "#F1FAEE"],
-      comp: ["#9B5DE5", "#E9C46A"],
+      name: "Фиолетовый",
+      comp: ["#E9C46A", "#F1FAEE", "#2A9D8F", "#F4A261"],
       analog: ["#9B5DE5", "#457B9D", "#E5989B"],
-      triad: ["#9B5DE5", "#2A9D8F", "#E63946"],
+      triad: ["#2A9D8F", "#E63946"],
+      season: "Осень, Зима",
+    },
+    pink: {
+      name: "Розовый",
+      comp: ["#2A9D8F", "#457B9D", "#8D99AE", "#1D3557"],
+      analog: ["#E5989B", "#F2BCC0", "#9B5DE5"],
+      triad: ["#457B9D", "#E9C46A"],
+      season: "Весна, Лето",
     },
     burgundy: {
-      title: "Бордовый цвет",
-      desc: "Цвет роскоши, глубины и элегантности. Идеален для осени и зимы.",
-      mono: ["#800020", "#A52A2A", "#C94C4C", "#E8C0C0"],
-      comp: ["#800020", "#E9C46A"],
+      name: "Бордовый",
+      comp: ["#E9C46A", "#F8EDEB", "#8D99AE", "#457B9D"],
       analog: ["#800020", "#E63946", "#9B5DE5"],
-      triad: ["#800020", "#2A9D8F", "#F4A261"],
+      triad: ["#2A9D8F", "#F4A261"],
+      season: "Осень, Зима",
     },
-    coral: {
-      title: "Коралловый цвет",
-      desc: "Яркий, жизнерадостный цвет, который добавляет энергии и свежести в любой образ.",
-      mono: ["#FF6B6B", "#FF8E8E", "#FFB3B3", "#FFD9D9"],
-      comp: ["#FF6B6B", "#2A9D8F"],
-      analog: ["#FF6B6B", "#E63946", "#F4A261"],
-      triad: ["#FF6B6B", "#457B9D", "#E9C46A"],
+    brown: {
+      name: "Коричневый",
+      comp: ["#457B9D", "#F8EDEB", "#E9C46A", "#2A9D8F"],
+      analog: ["#8B5A2B", "#A67B5B", "#C4A882"],
+      triad: ["#2A9D8F", "#9B5DE5"],
+      season: "Осень",
     },
-    olive: {
-      title: "Оливковый цвет",
-      desc: "Цвет спокойствия, природной элегантности и сдержанности.",
-      mono: ["#6B8E23", "#8FBC5A", "#B5D68C", "#D9E8C4"],
-      comp: ["#6B8E23", "#9B5DE5"],
-      analog: ["#6B8E23", "#2A9D8F", "#E9C46A"],
-      triad: ["#6B8E23", "#E63946", "#457B9D"],
-    },
-    camel: {
-      title: "Верблюжий цвет",
-      desc: "Тёплый, естественный оттенок, который создаёт ощущение уюта и комфорта.",
-      mono: ["#C4A882", "#D6BF9E", "#E8D5BA", "#F5EAD6"],
-      comp: ["#C4A882", "#457B9D"],
-      analog: ["#C4A882", "#8B5A2B", "#F8EDEB"],
-      triad: ["#C4A882", "#2A9D8F", "#E63946"],
-    },
-    lavender: {
-      title: "Лавандовый цвет",
-      desc: "Нежный, романтичный цвет, который добавляет образу мягкости и воздушности.",
-      mono: ["#B8A9C9", "#D1C6D9", "#E6DDE9", "#F3EEF5"],
-      comp: ["#B8A9C9", "#E9C46A"],
-      analog: ["#B8A9C9", "#9B5DE5", "#E5989B"],
-      triad: ["#B8A9C9", "#2A9D8F", "#F4A261"],
-    },
-    mint: {
-      title: "Мятный цвет",
-      desc: "Свежий, освежающий цвет, который ассоциируется с лёгкостью и чистотой.",
-      mono: ["#98D8C8", "#B8E6D8", "#D8F2E8", "#F0FAF5"],
-      comp: ["#98D8C8", "#E63946"],
-      analog: ["#98D8C8", "#2A9D8F", "#A8DADC"],
-      triad: ["#98D8C8", "#9B5DE5", "#F4A261"],
-    },
-    peach: {
-      title: "Персиковый цвет",
-      desc: "Нежный, тёплый и уютный цвет, который создаёт романтичное настроение.",
-      mono: ["#FFDAB9", "#FFE4CC", "#FFEDDF", "#FFF6EF"],
-      comp: ["#FFDAB9", "#457B9D"],
-      analog: ["#FFDAB9", "#F4A261", "#E5989B"],
-      triad: ["#FFDAB9", "#2A9D8F", "#9B5DE5"],
-    },
-    taupe: {
-      title: "Серо-бежевый цвет",
-      desc: "Элегантный, универсальный цвет, который подходит к любому гардеробу.",
-      mono: ["#BFA9A0", "#D1BFB8", "#E3D5D0", "#F5EBE8"],
-      comp: ["#BFA9A0", "#E9C46A"],
-      analog: ["#BFA9A0", "#8D99AE", "#F8EDEB"],
-      triad: ["#BFA9A0", "#E63946", "#457B9D"],
-    },
-    espresso: {
-      title: "Кофейный цвет",
-      desc: "Глубокий, насыщенный оттенок, который добавляет образу основательности и стиля.",
-      mono: ["#4A3728", "#6B4F3A", "#8D6B4F", "#B08B6B"],
-      comp: ["#4A3728", "#A8DADC"],
-      analog: ["#4A3728", "#8B5A2B", "#C4A882"],
-      triad: ["#4A3728", "#E63946", "#F1FAEE"],
-    },
-    fuchsia: {
-      title: "Фуксия",
-      desc: "Яркий, смелый и дерзкий цвет, который привлекает внимание и поднимает настроение.",
-      mono: ["#D4456B", "#E06E8A", "#EC97AF", "#F5C0D3"],
-      comp: ["#D4456B", "#2A9D8F"],
-      analog: ["#D4456B", "#E63946", "#9B5DE5"],
-      triad: ["#D4456B", "#E9C46A", "#457B9D"],
-    },
-    gold: {
-      title: "Золотой цвет",
-      desc: "Цвет роскоши, богатства и элегантности. Добавляет сияния в любой образ.",
-      mono: ["#D4AF37", "#E0C25E", "#ECD685", "#F5EAB0"],
-      comp: ["#D4AF37", "#457B9D"],
-      analog: ["#D4AF37", "#E9C46A", "#8B5A2B"],
-      triad: ["#D4AF37", "#E63946", "#2A9D8F"],
-    },
-    ice: {
-      title: "Ледяной цвет",
-      desc: "Цвет свежести, чистоты и прохлады. Создаёт лёгкие, воздушные образы.",
-      mono: ["#E8F4F8", "#F0F8FA", "#F5FCFD", "#FFFFFF"],
-      comp: ["#E8F4F8", "#F4A261"],
-      analog: ["#E8F4F8", "#A8DADC", "#F1FAEE"],
-      triad: ["#E8F4F8", "#E63946", "#2A9D8F"],
-    },
-    cream: {
-      title: "Кремовый цвет",
-      desc: "Мягкий, тёплый и уютный цвет, который создаёт ощущение комфорта и нежности.",
-      mono: ["#FFFDD0", "#FFFEE5", "#FFFFF0", "#FFFFFF"],
-      comp: ["#FFFDD0", "#457B9D"],
-      analog: ["#FFFDD0", "#F8EDEB", "#E5989B"],
-      triad: ["#FFFDD0", "#2A9D8F", "#E63946"],
-    },
-    lilac: {
-      title: "Сиреневатый цвет",
-      desc: "Нежный, романтичный и мечтательный цвет, который добавляет образу лёгкости.",
-      mono: ["#C8A2C8", "#D8B8D8", "#E8D0E8", "#F5EAF5"],
-      comp: ["#C8A2C8", "#E9C46A"],
-      analog: ["#C8A2C8", "#9B5DE5", "#E5989B"],
-      triad: ["#C8A2C8", "#2A9D8F", "#F4A261"],
+    navy: {
+      name: "Тёмно-синий",
+      comp: ["#F4A261", "#F1FAEE", "#E9C46A", "#8D99AE"],
+      analog: ["#1D3557", "#457B9D", "#A8DADC"],
+      triad: ["#E63946", "#E9C46A"],
+      season: "Осень, Зима",
     },
   };
 
@@ -413,11 +177,11 @@ document.addEventListener("DOMContentLoaded", function () {
       grid.innerHTML = colors
         .map(
           (color) => `
-                            <div class="color-item" data-id="${color.id}">
-                                <div class="color-circle" style="background: ${color.hex};" title="${color.name}"></div>
-                                <span>${color.name}</span>
-                            </div>
-                        `,
+                    <div class="color-item" data-id="${color.id}">
+                        <div class="color-circle" style="background: ${color.hex};" title="${color.name}"></div>
+                        <span>${color.name}</span>
+                    </div>
+                `,
         )
         .join("");
 
@@ -433,16 +197,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ============================================
-  // 7. ПОКАЗ ДЕТАЛЬНОЙ ИНФОРМАЦИИ
+  // 7. ПОКАЗ ДЕТАЛЬНОЙ ИНФОРМАЦИИ О ЦВЕТЕ
   // ============================================
   function showColorDetail(colorId) {
-    const data = colorCombinations[colorId];
+    const data = colorCombinationsData[colorId];
     if (!data) {
       alert("Для этого цвета пока нет данных. Но мы работаем над этим! 🎨");
       return;
     }
 
-    // Функция для получения названия цвета по HEX
     function getColorName(hex) {
       const found = colorData.find(
         (c) => c.hex.toLowerCase() === hex.toLowerCase(),
@@ -450,8 +213,9 @@ document.addEventListener("DOMContentLoaded", function () {
       return found ? found.name : hex;
     }
 
-    document.getElementById("detailTitle").textContent = data.title;
-    document.getElementById("detailDesc").textContent = data.desc;
+    document.getElementById("detailTitle").textContent = data.name + " цвет";
+    document.getElementById("detailDesc").textContent =
+      `Сезон: ${data.season || "Все сезоны"}. Сочетается с: ${data.comp.map((c) => getColorName(c)).join(", ")}.`;
 
     function renderDots(containerId, colors) {
       const container = document.getElementById(containerId);
@@ -463,10 +227,10 @@ document.addEventListener("DOMContentLoaded", function () {
         .join("");
     }
 
-    renderDots("detailMono", data.mono);
-    renderDots("detailComp", data.comp);
-    renderDots("detailAnalog", data.analog);
-    renderDots("detailTriad", data.triad);
+    renderDots("detailMono", data.analog || [data.hex]);
+    renderDots("detailComp", data.comp.slice(0, 2));
+    renderDots("detailAnalog", data.analog.slice(0, 3));
+    renderDots("detailTriad", data.triad || []);
 
     colorDetail.classList.add("visible");
     basicGrid.style.display = "none";
@@ -476,9 +240,6 @@ document.addEventListener("DOMContentLoaded", function () {
       .forEach((h) => (h.style.display = "none"));
   }
 
-  // ============================================
-  // 8. ЗАКРЫТИЕ ДЕТАЛЬНОЙ ИНФОРМАЦИИ
-  // ============================================
   document
     .getElementById("closeColorBtn")
     .addEventListener("click", function () {
@@ -493,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
   renderColors();
 
   // ============================================
-  // 9. КОНСТРУКТОР
+  // 8. КОНСТРУКТОР — ОТРИСОВКА ЦВЕТОВ
   // ============================================
   const clothingColorContainer = document.getElementById("clothingColor");
   colorData.forEach((color) => {
@@ -537,125 +298,260 @@ document.addEventListener("DOMContentLoaded", function () {
   const resultContainer = document.getElementById("result-container");
   const resultGrid = document.getElementById("resultGrid");
 
-  const looksDatabase = {
-    джинсы: {
-      blue: [
-        {
-          icon: "👕",
-          title: "Классика",
-          items: "Белая футболка + синие джинсы + кеды",
-          explanation: "Вечный образ для прогулок",
-        },
-        {
-          icon: "🧶",
-          title: "Уют",
-          items: "Серый свитер + синие джинсы + ботинки",
-          explanation: "Тёплый осенний образ",
-        },
-      ],
-      white: [
-        {
-          icon: "👕",
-          title: "Монохром",
-          items: "Чёрный топ + белые джинсы + чёрные кеды",
-          explanation: "Стильный контраст",
-        },
-      ],
-      black: [
-        {
-          icon: "👕",
-          title: "Кэжуал",
-          items: "Белая футболка + чёрные джинсы + кеды",
-          explanation: "Базовый образ на каждый день",
-        },
-      ],
-    },
-    платье: {
-      red: [
-        {
-          icon: "👗",
-          title: "Вечерний",
-          items: "Красное платье + чёрные ботфорты + клатч",
-          explanation: "Идеально для свидания",
-        },
-      ],
-      blue: [
-        {
-          icon: "👗",
-          title: "Кэжуал",
-          items: "Синее платье + белые кеды + джинсовка",
-          explanation: "Стильно и удобно",
-        },
-      ],
-    },
-    юбка: {
-      beige: [
-        {
-          icon: "👚",
-          title: "Элегантный",
-          items: "Бежевая юбка + голубая рубашка + лоферы",
-          explanation: "Нежный образ для офиса",
-        },
-      ],
-      black: [
-        {
-          icon: "👚",
-          title: "Строгий",
-          items: "Чёрная юбка + белая рубашка + лодочки",
-          explanation: "Классика для деловых встреч",
-        },
-      ],
-    },
-  };
+  // ============================================
+  // 9. ФУНКЦИЯ ДЛЯ ПРАВИЛЬНОГО СОГЛАСОВАНИЯ
+  // ============================================
+  function getColorAdjective(colorName, clothingType) {
+    const genderMap = {
+      джинсы: "мн",
+      брюки: "мн",
+      юбка: "ж",
+      платье: "с",
+      топ: "м",
+      пальто: "с",
+      обувь: "ж",
+    };
 
+    const declension = {
+      Белый: { м: "Белый", ж: "Белая", с: "Белое", мн: "Белые" },
+      Чёрный: { м: "Чёрный", ж: "Чёрная", с: "Чёрное", мн: "Чёрные" },
+      Серый: { м: "Серый", ж: "Серая", с: "Серое", мн: "Серые" },
+      Красный: { м: "Красный", ж: "Красная", с: "Красное", мн: "Красные" },
+      Синий: { м: "Синий", ж: "Синяя", с: "Синее", мн: "Синие" },
+      Зелёный: { м: "Зелёный", ж: "Зелёная", с: "Зелёное", мн: "Зелёные" },
+      Жёлтый: { м: "Жёлтый", ж: "Жёлтая", с: "Жёлтое", мн: "Жёлтые" },
+      Оранжевый: {
+        м: "Оранжевый",
+        ж: "Оранжевая",
+        с: "Оранжевое",
+        мн: "Оранжевые",
+      },
+      Фиолетовый: {
+        м: "Фиолетовый",
+        ж: "Фиолетовая",
+        с: "Фиолетовое",
+        мн: "Фиолетовые",
+      },
+      Розовый: { м: "Розовый", ж: "Розовая", с: "Розовое", мн: "Розовые" },
+      Бежевый: { м: "Бежевый", ж: "Бежевая", с: "Бежевое", мн: "Бежевые" },
+      Коричневый: {
+        м: "Коричневый",
+        ж: "Коричневая",
+        с: "Коричневое",
+        мн: "Коричневые",
+      },
+      Бордовый: { м: "Бордовый", ж: "Бордовая", с: "Бордовое", мн: "Бордовые" },
+      "Тёмно-синий": {
+        м: "Тёмно-синий",
+        ж: "Тёмно-синяя",
+        с: "Тёмно-синее",
+        мн: "Тёмно-синие",
+      },
+      Голубой: { м: "Голубой", ж: "Голубая", с: "Голубое", мн: "Голубые" },
+    };
+
+    const gender = genderMap[clothingType] || "м";
+    const forms = declension[colorName];
+    return forms ? forms[gender] : colorName;
+  }
+
+  // ============================================
+  // 10. ФУНКЦИЯ ДЛЯ ОТОБРАЖЕНИЯ ЦВЕТНЫХ КРУЖОЧКОВ
+  // ============================================
+  function renderItemsWithColors(items) {
+    return items
+      .map(
+        (item) => `
+            <span style="display: inline-flex; align-items: center; gap: 6px; margin-right: 12px; margin-bottom: 4px; background: #f8f4f0; padding: 4px 10px 4px 6px; border-radius: 20px; font-size: 14px;">
+                <span style="display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: ${item.color}; border: 2px solid #e0d6cc; flex-shrink: 0;"></span>
+                ${item.name}
+            </span>
+        `,
+      )
+      .join("");
+  }
+
+  // ============================================
+  // 11. ГЕНЕРАЦИЯ УНИКАЛЬНОГО ОТВЕТА ДЛЯ ТИПА ОДЕЖДЫ
+  // ============================================
+  function generateUniqueLook(colorId, clothingType, colorName) {
+    const colorData = colorCombinationsData[colorId];
+    if (!colorData) {
+      return [
+        {
+          icon: "✨",
+          title: "Стильный образ",
+          items: [{ name: `${colorName} ${clothingType}`, color: "#8D99AE" }],
+          explanation: "Сочетай с белым, чёрным или бежевым",
+        },
+      ];
+    }
+
+    // Выбираем 2-3 случайных цвета-компаньона
+    const compColors = colorData.comp;
+    const shuffled = [...compColors].sort(() => 0.5 - Math.random());
+    const selected = shuffled.slice(0, 3);
+
+    // Получаем названия цветов по HEX
+    const getColorNameByHex = (hex) => {
+      const found = colorData.find(
+        (c) => c.hex && c.hex.toLowerCase() === hex.toLowerCase(),
+      );
+      return found ? found.name : hex;
+    };
+
+    // Типы вещей для разных категорий одежды
+    const clothingItems = {
+      джинсы: {
+        main: "джинсы",
+        top: "топ",
+        shoes: "обувь",
+        accessory: "аксессуар",
+      },
+      брюки: {
+        main: "брюки",
+        top: "рубашка",
+        shoes: "обувь",
+        accessory: "ремень",
+      },
+      юбка: { main: "юбка", top: "блузка", shoes: "обувь", accessory: "сумка" },
+      платье: {
+        main: "платье",
+        top: "жакет",
+        shoes: "обувь",
+        accessory: "украшение",
+      },
+      топ: {
+        main: "топ",
+        bottom: "низ",
+        shoes: "обувь",
+        accessory: "аксессуар",
+      },
+      пальто: {
+        main: "пальто",
+        bottom: "брюки",
+        shoes: "обувь",
+        accessory: "шарф",
+      },
+      обувь: {
+        main: "обувь",
+        bottom: "брюки",
+        top: "верх",
+        accessory: "сумка",
+      },
+    };
+
+    const items = clothingItems[clothingType] || clothingItems.брюки;
+    const colorAdjective = getColorAdjective(colorName, clothingType);
+
+    // Генерируем 3 уникальных образа
+    const looks = [];
+    const colorNames = selected.map((c) => getColorNameByHex(c));
+
+    // Образ 1: основной
+    looks.push({
+      icon: "👗",
+      title: `${colorAdjective} ${items.main}`,
+      items: [
+        {
+          name: `${colorAdjective} ${items.main}`,
+          color: colorData.hex || "#8D99AE",
+        },
+        { name: `${colorNames[0]} ${items.top || "верх"}`, color: selected[0] },
+        { name: `${colorNames[1]} ${items.shoes}`, color: selected[1] },
+      ],
+      explanation: `${colorData.name} с ${colorNames[0]} и ${colorNames[1]} — гармоничный и стильный образ.`,
+    });
+
+    // Образ 2: с акцентом
+    looks.push({
+      icon: "👗",
+      title: `${colorAdjective} ${items.main} с акцентом`,
+      items: [
+        {
+          name: `${colorAdjective} ${items.main}`,
+          color: colorData.hex || "#8D99AE",
+        },
+        { name: `${colorNames[1]} ${items.top || "верх"}`, color: selected[1] },
+        {
+          name: `${colorNames[2] || colorNames[0]} ${items.accessory || "аксессуар"}`,
+          color: selected[2] || selected[0],
+        },
+      ],
+      explanation: `Добавь акцент с помощью ${colorNames[1]} — это придаст образу яркость.`,
+    });
+
+    // Образ 3: минималистичный
+    looks.push({
+      icon: "👗",
+      title: `${colorAdjective} ${items.main} (минимализм)`,
+      items: [
+        {
+          name: `${colorAdjective} ${items.main}`,
+          color: colorData.hex || "#8D99AE",
+        },
+        { name: `${colorNames[0]} ${items.top || "верх"}`, color: selected[0] },
+      ],
+      explanation: `Лаконичное сочетание ${colorData.name} и ${colorNames[0]} для повседневного образа.`,
+    });
+
+    return looks;
+  }
+
+  // ============================================
+  // 12. КНОПКА «СОЧЕТАЕТСЯ?» — УНИКАЛЬНАЯ ГЕНЕРАЦИЯ
+  // ============================================
   document
     .getElementById("checkCombinationBtn")
     .addEventListener("click", function () {
       if (!selectedType) {
-        alert("Пожалуйста, выберите тип одежды.");
+        alert("Пожалуйста, выбери тип одежды.");
         return;
       }
       if (!selectedColor) {
-        alert("Пожалуйста, выберите цвет.");
+        alert("Пожалуйста, выбери цвет.");
         return;
       }
 
+      const colorId = selectedColor;
       const colorName =
-        colorData.find((c) => c.id === selectedColor)?.name || selectedColor;
-      let looks = looksDatabase[selectedType]?.[selectedColor];
+        colorData.find((c) => c.id === colorId)?.name || selectedColor;
+      const clothingType = selectedType;
 
-      if (!looks) {
-        looks = [
-          {
-            icon: "✨",
-            title: "Универсальный",
-            items: `${colorName} ${selectedType} + базовый верх`,
-            explanation: "Сочетайте с белым, чёрным или бежевым",
-          },
-          {
-            icon: "✨",
-            title: "Эксперимент",
-            items: `${colorName} ${selectedType} + контрастный цвет`,
-            explanation: "Попробуйте цвет-комплимент",
-          },
-        ];
-      }
+      // Генерируем уникальные образы
+      const looks = generateUniqueLook(colorId, clothingType, colorName);
 
+      // Отображаем результат с цветными кружочками
       resultGrid.innerHTML = looks
         .map(
           (look) => `
-                        <div class="result-card">
-                            <div class="icon">${look.icon}</div>
-                            <h4>${look.title}</h4>
-                            <div class="items">${look.items}</div>
-                            <div class="explanation">${look.explanation}</div>
-                            <button class="like-btn" onclick="this.textContent = this.textContent === '❤️' ? '🤍' : '❤️'">🤍</button>
-                        </div>
-                    `,
+                <div class="result-card">
+                    <div class="icon">${look.icon}</div>
+                    <h4>${look.title}</h4>
+                    <div class="items" style="display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0;">
+                        ${renderItemsWithColors(look.items)}
+                    </div>
+                    <div class="explanation">${look.explanation}</div>
+                    <button class="like-btn" onclick="this.textContent = this.textContent === '❤️' ? '🤍' : '❤️'">🤍</button>
+                </div>
+            `,
         )
         .join("");
 
       resultContainer.classList.add("visible");
       resultContainer.scrollIntoView({ behavior: "smooth" });
+    });
+
+  // ============================================
+  // 13. ФОРМА ОБРАТНОЙ СВЯЗИ
+  // ============================================
+  document
+    .getElementById("feedbackForm")
+    .addEventListener("submit", function (e) {
+      e.preventDefault();
+      const status = document.getElementById("form-status");
+      status.textContent = "✨ Спасибо! Ваше сообщение отправлено.";
+      status.style.color = "#2A9D8F";
+      this.reset();
     });
 });
